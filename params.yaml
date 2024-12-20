@@ -7,7 +7,7 @@ train:
   num_classes: 3
   lr: 0.01
   epochs: 20
-  dimension: 64
+  dimension: 32
 
 inference:
   model: "models/model.pkl"
