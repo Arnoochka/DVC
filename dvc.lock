@@ -1,0 +1,84 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: src/prepare.py
+      hash: md5
+      md5: de93d1dcde1f5f0621742f340f15920a
+      size: 766
+    outs:
+    - path: data/prepared
+      hash: md5
+      md5: 46ed0bf8a58653acc718881c21a1fa00.dir
+      size: 2854
+      nfiles: 2
+  featurize:
+    cmd: python src/featurization.py
+    deps:
+    - path: data/prepared
+      hash: md5
+      md5: 46ed0bf8a58653acc718881c21a1fa00.dir
+      size: 2854
+      nfiles: 2
+    - path: src/featurization.py
+      hash: md5
+      md5: feda292b226540ec36789fb34ac7e3a8
+      size: 1607
+    outs:
+    - path: data/features
+      hash: md5
+      md5: b3b68f4844b669cc8b5b47d0546dfd25.dir
+      size: 7109
+      nfiles: 3
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/features
+      hash: md5
+      md5: b3b68f4844b669cc8b5b47d0546dfd25.dir
+      size: 7109
+      nfiles: 3
+    - path: src/train.py
+      hash: md5
+      md5: a22ca6904b5259c92ef2361fff20cce5
+      size: 3366
+    outs:
+    - path: models
+      hash: md5
+      md5: 8842007b6da183567c598c636f637646.dir
+      size: 22323
+      nfiles: 1
+    - path: results/train
+      hash: md5
+      md5: 59a957df6f0166ab6a078157b76a2842.dir
+      size: 875
+      nfiles: 2
+  inference:
+    cmd: python src/inference.py
+    deps:
+    - path: data/features
+      hash: md5
+      md5: b3b68f4844b669cc8b5b47d0546dfd25.dir
+      size: 7109
+      nfiles: 3
+    - path: models
+      hash: md5
+      md5: 8842007b6da183567c598c636f637646.dir
+      size: 22323
+      nfiles: 1
+    - path: src/inference.py
+      hash: md5
+      md5: cd4ed4d5e01f9cca9fb961125702de5c
+      size: 3834
+    outs:
+    - path: results/inference
+      hash: md5
+      md5: 015e0c9e3854d61b92b61555e38e3cd8.dir
+      size: 35347
+      nfiles: 1
+    - path: results/metrics
+      hash: md5
+      md5: 784b227e43fccf9af7f9f7a32b2b2914.dir
+      size: 64
+      nfiles: 2

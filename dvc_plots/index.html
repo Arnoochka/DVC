@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>DVC Plot</title>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.18.2"></script>
+    
+    <style>
+        table {
+            border-spacing: 15px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id = "results_train_accuracy_tsv">
+        <script type = "text/javascript">
+            var spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"values": [{"epoch": "1", "accuracy": "0.375", "step": 0, "rev": "workspace"}, {"epoch": "2", "accuracy": "0.6333333333333333", "step": 1, "rev": "workspace"}, {"epoch": "3", "accuracy": "0.6583333333333333", "step": 2, "rev": "workspace"}, {"epoch": "4", "accuracy": "0.6583333333333333", "step": 3, "rev": "workspace"}, {"epoch": "5", "accuracy": "0.6583333333333333", "step": 4, "rev": "workspace"}, {"epoch": "6", "accuracy": "0.6583333333333333", "step": 5, "rev": "workspace"}, {"epoch": "7", "accuracy": "0.6666666666666666", "step": 6, "rev": "workspace"}, {"epoch": "8", "accuracy": "0.675", "step": 7, "rev": "workspace"}, {"epoch": "9", "accuracy": "0.6833333333333333", "step": 8, "rev": "workspace"}, {"epoch": "10", "accuracy": "0.7083333333333334", "step": 9, "rev": "workspace"}, {"epoch": "11", "accuracy": "0.7083333333333334", "step": 10, "rev": "workspace"}, {"epoch": "12", "accuracy": "0.7833333333333333", "step": 11, "rev": "workspace"}, {"epoch": "13", "accuracy": "0.8166666666666667", "step": 12, "rev": "workspace"}, {"epoch": "14", "accuracy": "0.8333333333333334", "step": 13, "rev": "workspace"}, {"epoch": "15", "accuracy": "0.8333333333333334", "step": 14, "rev": "workspace"}, {"epoch": "16", "accuracy": "0.8666666666666667", "step": 15, "rev": "workspace"}, {"epoch": "17", "accuracy": "0.875", "step": 16, "rev": "workspace"}, {"epoch": "18", "accuracy": "0.875", "step": 17, "rev": "workspace"}, {"epoch": "19", "accuracy": "0.9166666666666666", "step": 18, "rev": "workspace"}, {"epoch": "20", "accuracy": "0.9083333333333333", "step": 19, "rev": "workspace"}]}, "title": {"text": "results/train/accuracy.tsv", "anchor": "middle"}, "width": 300, "height": 300, "params": [{"name": "smooth", "value": 0.001, "bind": {"input": "range", "min": 0.001, "max": 1, "step": 0.001}}], "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "color": {"field": "rev", "scale": {"domain": ["workspace"], "range": ["#945dd6"]}}, "strokeDash": {}}, "layer": [{"layer": [{"params": [{"name": "grid", "select": "interval", "bind": "scales"}], "mark": "line"}, {"transform": [{"filter": {"param": "hover", "empty": false}}], "mark": "point"}], "encoding": {"y": {"field": "accuracy", "type": "quantitative", "title": "accuracy", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}, "transform": [{"loess": "accuracy", "on": "step", "groupby": ["rev"], "bandwidth": {"signal": "smooth"}}]}, {"mark": {"type": "line", "opacity": 0.2}, "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "y": {"field": "accuracy", "type": "quantitative", "title": "accuracy", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"mark": {"type": "circle", "size": 10}, "encoding": {"x": {"aggregate": "max", "field": "step", "type": "quantitative", "title": "step"}, "y": {"aggregate": {"argmax": "step"}, "field": "accuracy", "type": "quantitative", "title": "accuracy", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"transform": [{"calculate": "datum.rev", "as": "pivot_field"}, {"pivot": "pivot_field", "op": "mean", "value": "accuracy", "groupby": ["step"]}], "mark": {"type": "rule", "tooltip": {"content": "data"}, "stroke": "grey"}, "encoding": {"opacity": {"condition": {"value": 0.3, "param": "hover", "empty": false}, "value": 0}}, "params": [{"name": "hover", "select": {"type": "point", "fields": ["step"], "nearest": true, "on": "mouseover", "clear": "mouseout"}}]}]};
+            vegaEmbed('#results_train_accuracy_tsv', spec);
+        </script>
+    </div>
+    
+
+    <div id = "results_train_loss_tsv">
+        <script type = "text/javascript">
+            var spec = {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "data": {"values": [{"epoch": "1", "loss": "1.0854663670063018", "step": 0, "rev": "workspace"}, {"epoch": "2", "loss": "1.0552752325932184", "step": 1, "rev": "workspace"}, {"epoch": "3", "loss": "1.0187460561593373", "step": 2, "rev": "workspace"}, {"epoch": "4", "loss": "0.9757018874088923", "step": 3, "rev": "workspace"}, {"epoch": "5", "loss": "0.9292999694744746", "step": 4, "rev": "workspace"}, {"epoch": "6", "loss": "0.8877144902944565", "step": 5, "rev": "workspace"}, {"epoch": "7", "loss": "0.85699363052845", "step": 6, "rev": "workspace"}, {"epoch": "8", "loss": "0.8361578236023585", "step": 7, "rev": "workspace"}, {"epoch": "9", "loss": "0.8210237105687459", "step": 8, "rev": "workspace"}, {"epoch": "10", "loss": "0.8091576188802719", "step": 9, "rev": "workspace"}, {"epoch": "11", "loss": "0.7983621448278427", "step": 10, "rev": "workspace"}, {"epoch": "12", "loss": "0.7887088596820832", "step": 11, "rev": "workspace"}, {"epoch": "13", "loss": "0.7793987641731898", "step": 12, "rev": "workspace"}, {"epoch": "14", "loss": "0.7705294887224833", "step": 13, "rev": "workspace"}, {"epoch": "15", "loss": "0.7613589664300283", "step": 14, "rev": "workspace"}, {"epoch": "16", "loss": "0.752189506093661", "step": 15, "rev": "workspace"}, {"epoch": "17", "loss": "0.7435673912366231", "step": 16, "rev": "workspace"}, {"epoch": "18", "loss": "0.7350773870944977", "step": 17, "rev": "workspace"}, {"epoch": "19", "loss": "0.7265398214260738", "step": 18, "rev": "workspace"}, {"epoch": "20", "loss": "0.7188110321760177", "step": 19, "rev": "workspace"}]}, "title": {"text": "results/train/loss.tsv", "anchor": "middle"}, "width": 300, "height": 300, "params": [{"name": "smooth", "value": 0.001, "bind": {"input": "range", "min": 0.001, "max": 1, "step": 0.001}}], "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "color": {"field": "rev", "scale": {"domain": ["workspace"], "range": ["#945dd6"]}}, "strokeDash": {}}, "layer": [{"layer": [{"params": [{"name": "grid", "select": "interval", "bind": "scales"}], "mark": "line"}, {"transform": [{"filter": {"param": "hover", "empty": false}}], "mark": "point"}], "encoding": {"y": {"field": "loss", "type": "quantitative", "title": "loss", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}, "transform": [{"loess": "loss", "on": "step", "groupby": ["rev"], "bandwidth": {"signal": "smooth"}}]}, {"mark": {"type": "line", "opacity": 0.2}, "encoding": {"x": {"field": "step", "type": "quantitative", "title": "step"}, "y": {"field": "loss", "type": "quantitative", "title": "loss", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"mark": {"type": "circle", "size": 10}, "encoding": {"x": {"aggregate": "max", "field": "step", "type": "quantitative", "title": "step"}, "y": {"aggregate": {"argmax": "step"}, "field": "loss", "type": "quantitative", "title": "loss", "scale": {"zero": false}}, "color": {"field": "rev", "type": "nominal"}}}, {"transform": [{"calculate": "datum.rev", "as": "pivot_field"}, {"pivot": "pivot_field", "op": "mean", "value": "loss", "groupby": ["step"]}], "mark": {"type": "rule", "tooltip": {"content": "data"}, "stroke": "grey"}, "encoding": {"opacity": {"condition": {"value": 0.3, "param": "hover", "empty": false}, "value": 0}}, "params": [{"name": "hover", "select": {"type": "point", "fields": ["step"], "nearest": true, "on": "mouseover", "clear": "mouseout"}}]}]};
+            vegaEmbed('#results_train_loss_tsv', spec);
+        </script>
+    </div>
+    
+
+        <div
+            id="results_inference_roc_png"
+            style="border:1px solid black;text-align:center;
+            white-space: nowrap;overflow-y:hidden;">
+            <p>results/inference/roc.png</p>
+
+                <div
+                    style="border:1px dotted black;margin:2px;display:
+                    inline-block;
+                    overflow:hidden;margin-left:8px;">
+                    <p>workspace</p>
+                    <img src="static/workspace_results_inference_roc.png">
+                </div>
+                
+        </div>
+</body>
+</html>

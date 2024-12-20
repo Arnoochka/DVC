@@ -1,0 +1,43 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - src/prepare.py
+    outs:
+    - data/prepared
+
+  featurize:
+    cmd: python src/featurization.py
+    deps:
+    - data/prepared
+    - src/featurization.py
+    outs:
+    - data/features
+
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    - data/features
+    outs:
+    - models
+    - results/train
+
+  inference:
+    cmd: python src/inference.py
+    deps:
+    - src/inference.py
+    - data/features
+    - models
+    outs:
+    - results/metrics
+    - results/inference
+
+metrics:
+- results/metrics
+plots: 
+- results/train
+- results/inference
+
+    
+    

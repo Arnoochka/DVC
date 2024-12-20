@@ -1,0 +1,13 @@
+prepare:
+  split: 0.2
+  seed: 42
+
+train:
+  input_size: 4
+  num_classes: 3
+  lr: 0.01
+  epochs: 20
+  dimension: 64
+
+inference:
+  model: "models/model.pkl"
