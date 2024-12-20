@@ -6,7 +6,7 @@ train:
   input_size: 4
   num_classes: 3
   lr: 0.01
-  epochs: 20
+  epochs: 30
   dimension: 64
 
 inference:
