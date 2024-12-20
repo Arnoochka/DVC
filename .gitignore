@@ -1,2 +1,5 @@
-.venv
-data
+/.venv
+/data
+/dvc_tutorial
+/dvc-1-get-started
+/example-get-started-experiments
