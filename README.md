@@ -1,4 +1,4 @@
-# Tutorial: Get started with Data Version Control (DVC)
+Data Version Control (DVC)
 
 ## 1. Create and activate virtual environment
 
