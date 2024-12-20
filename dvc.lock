@@ -69,14 +69,14 @@ stages:
       nfiles: 1
     - path: src/inference.py
       hash: md5
-      md5: cd4ed4d5e01f9cca9fb961125702de5c
-      size: 3834
+      md5: a345251e837ec4dd56f1154d47c9131d
+      size: 4301
     outs:
     - path: results/inference
       hash: md5
-      md5: 015e0c9e3854d61b92b61555e38e3cd8.dir
-      size: 35347
-      nfiles: 1
+      md5: 28eaa07d3159e0f3cb1fed47539aed95.dir
+      size: 50550
+      nfiles: 2
     - path: results/metrics
       hash: md5
       md5: 24e785adf1d1ace39b34e6c20e42274e.dir

@@ -4,7 +4,7 @@ import pickle
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
 def evaluate_acc(net: nn.Module, test_loader: DataLoader, device: str = 'cuda') -> float:
@@ -65,7 +65,7 @@ def evaluate_roc(net: nn.Module, test_loader: DataLoader, device: str = 'cuda', 
         fpr[i], tpr[i], _ = roc_curve((all_labels == i).numpy(), all_preds[:, i].numpy())
         roc_auc[i] = auc(fpr[i], tpr[i])
 
-    return fpr, tpr, roc_auc
+    return fpr, tpr, roc_auc, all_labels, torch.argmax(all_preds, dim=1)
 
 def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -84,7 +84,6 @@ def main():
     train_loader_path = 'data/features/train.pkl'
     test_loader_path = 'data/features/test.pkl'
 
-
     with open(train_loader_path, 'rb') as f:
         train_dataloader = pickle.load(f)
 
@@ -101,8 +100,9 @@ def main():
         json.dump({"accuracy": test_metric}, f)
         
     num_classes = 3
-    fpr, tpr, roc_auc = evaluate_roc(net, test_dataloader, device=device, num_classes=num_classes)
+    fpr, tpr, roc_auc, all_labels, all_preds = evaluate_roc(net, test_dataloader, device=device, num_classes=num_classes)
 
+    # Plot ROC Curves
     plt.figure()
     colors = ['aqua', 'darkorange', 'cornflowerblue']
     for i in range(num_classes):
@@ -116,6 +116,14 @@ def main():
     plt.title('ROC Curve')
     plt.legend(loc="lower right")
     plt.savefig('results/inference/roc.png')
+    plt.close()
+
+    # Compute and plot confusion matrix
+    cm = confusion_matrix(all_labels.numpy(), all_preds.numpy())
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=range(num_classes))
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title('Confusion Matrix')
+    plt.savefig('results/inference/confusion_matrix.png')
     plt.close()
 
 if __name__ == "__main__":
