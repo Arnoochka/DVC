@@ -28,7 +28,7 @@ stages:
     outs:
     - path: data/features
       hash: md5
-      md5: 91cbdcaaf2d8f1b5654a1dbfbb460caa.dir
+      md5: 4ed1d4831068dfa0c7b6d9b9a29a1f71.dir
       size: 7109
       nfiles: 3
   train:
@@ -36,7 +36,7 @@ stages:
     deps:
     - path: data/features
       hash: md5
-      md5: 91cbdcaaf2d8f1b5654a1dbfbb460caa.dir
+      md5: 4ed1d4831068dfa0c7b6d9b9a29a1f71.dir
       size: 7109
       nfiles: 3
     - path: src/train.py
@@ -46,25 +46,25 @@ stages:
     outs:
     - path: models
       hash: md5
-      md5: caf534434f3ca54739e4e00be55a6ec4.dir
+      md5: 7aed0ce406e919561bfa670aaa7f8422.dir
       size: 22323
       nfiles: 1
     - path: results/train
       hash: md5
-      md5: dd9b0c870532a588076ab2ef41fde807.dir
-      size: 1235
+      md5: c7b436e01622699be25f41aa70218728.dir
+      size: 873
       nfiles: 2
   inference:
     cmd: python src/inference.py
     deps:
     - path: data/features
       hash: md5
-      md5: 91cbdcaaf2d8f1b5654a1dbfbb460caa.dir
+      md5: 4ed1d4831068dfa0c7b6d9b9a29a1f71.dir
       size: 7109
       nfiles: 3
     - path: models
       hash: md5
-      md5: caf534434f3ca54739e4e00be55a6ec4.dir
+      md5: 7aed0ce406e919561bfa670aaa7f8422.dir
       size: 22323
       nfiles: 1
     - path: src/inference.py
@@ -74,11 +74,11 @@ stages:
     outs:
     - path: results/inference
       hash: md5
-      md5: 28eaa07d3159e0f3cb1fed47539aed95.dir
-      size: 50550
+      md5: 64315624302d133322ca4e2f8de48757.dir
+      size: 51086
       nfiles: 2
     - path: results/metrics
       hash: md5
-      md5: 24e785adf1d1ace39b34e6c20e42274e.dir
-      size: 49
+      md5: daba3be2e4edad30128b968a6bb1e41a.dir
+      size: 64
       nfiles: 2
